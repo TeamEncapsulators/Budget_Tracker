@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { TextField, Typography, Grid, Button, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';
 
-import { useSpeechContext } from '@speechly/react-client';
+//import { useSpeechContext } from '@speechly/react-client';
 import Snackbar from '../../Snackbar/Snackbar';
 import formatDate from '../../../utils/formatDate';
 import { ExpenseTrackerContext } from '../../../context/context';
@@ -20,7 +20,7 @@ const NewTransactionForm = () => {
   const classes = useStyles();
   const { addTransaction } = useContext(ExpenseTrackerContext);
   const [formData, setFormData] = useState(initialState);
-  const { segment } = useSpeechContext();
+  //const { segment } = useSpeechContext();
   const [open, setOpen] = React.useState(false);
 
   const createTransaction = () => {
@@ -37,7 +37,7 @@ const NewTransactionForm = () => {
     setFormData(initialState);
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (segment) {
       if (segment.intent.intent === 'add_expense') {
         setFormData({ ...formData, type: 'Expense' });
@@ -75,7 +75,7 @@ const NewTransactionForm = () => {
         createTransaction();
       }
     }
-  }, [segment]);
+  }, [segment]);*/
 
   const selectedCategories = formData.type === 'Income' ? incomeCategories : expenseCategories;
 
@@ -84,12 +84,7 @@ const NewTransactionForm = () => {
       <Snackbar open={open} setOpen={setOpen} />
       <Grid item xs={12}>
         <Typography align="center" variant="subtitle2" gutterBottom>
-        {segment ? (
-        <div className="segment">
-          {segment.words.map((w) => w.value).join(" ")}
-        </div>
-      ) : null}
-         {/* {isSpeaking ? <BigTranscript /> : 'Start adding transactions'}  */}
+        
         </Typography>
       </Grid>
       <Grid item xs={6}>
